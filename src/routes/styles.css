@@ -105,3 +105,5 @@ button:focus:not(:focus-visible) {
 	width: 1px;
 	white-space: nowrap;
 }
+
+@import "https://cdn.jsdelivr.net/npm/gridjs/dist/theme/mermaid.min.css";
