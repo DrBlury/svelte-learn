@@ -29,10 +29,10 @@
 			position: { x: 200, y: 200 }
 		},
 		{
-		id: '5',
-		type: 'color-picker',
-		data: { color: writable('#ff4000') },
-		position: { x: 200, y: 400 }
+			id: '5',
+			type: 'color-picker',
+			data: { color: writable('#ff4000') },
+			position: { x: 200, y: 400 }
 		}
 	]);
 
