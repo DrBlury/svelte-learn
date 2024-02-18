@@ -1,10 +1,18 @@
-<script>
+<script lang="ts">
 	import { writable } from 'svelte/store';
-	import { SvelteFlow, Controls, Background, BackgroundVariant, MiniMap } from '@xyflow/svelte';
+	import {
+		type Node,
+		type Edge,
+		SvelteFlow,
+		Controls,
+		Background,
+		BackgroundVariant,
+		MiniMap
+	} from '@xyflow/svelte';
 	import ColorPickerNode from '../nodes/ColorPickerNode.svelte';
 	import '@xyflow/svelte/dist/style.css';
 
-	const nodes = writable([
+	let nodes = writable<Node[]>([
 		{
 			id: '1',
 			type: 'input',
@@ -13,6 +21,7 @@
 		},
 		{
 			id: '2',
+			type: 'default',
 			data: { label: 'Another Node' },
 			position: { x: 200, y: 0 }
 		},
@@ -31,12 +40,12 @@
 		{
 			id: '5',
 			type: 'color-picker',
-			data: { color: writable('#ff4000') },
+			data: { color: '#ff4000' },
 			position: { x: 200, y: 400 }
 		}
 	]);
 
-	const edges = writable([
+	let edges = writable<Edge[]>([
 		{ id: 'e1-2', source: '1', target: '2', animated: true },
 		{ id: 'e2-3', source: '2', target: '3', animated: true },
 		{ id: 'e3-4', source: '3', target: '4', animated: true }
