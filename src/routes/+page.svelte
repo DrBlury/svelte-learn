@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { writable } from 'svelte/store';
+
 	import {
 		type Node,
 		type Edge,
@@ -11,6 +12,7 @@
 	} from '@xyflow/svelte';
 	import ColorPickerNode from '../nodes/ColorPickerNode.svelte';
 	import '@xyflow/svelte/dist/style.css';
+	import { Button } from 'flowbite-svelte';
 
 	let nodes = writable<Node[]>([
 		{
@@ -36,12 +38,6 @@
 			type: 'default',
 			data: { label: 'Default Node' },
 			position: { x: 200, y: 200 }
-		},
-		{
-			id: '5',
-			type: 'color-picker',
-			data: { color: '#ff4000' },
-			position: { x: 200, y: 400 }
 		}
 	]);
 
@@ -54,12 +50,33 @@
 	const nodeTypes = {
 		'color-picker': ColorPickerNode
 	};
+
+	function handleClick() {
+		// get node and edge data
+		const nodesData = $nodes;
+		const edgesData = $edges;
+
+		// log as JSON
+		interface Data {
+			nodes: Node[];
+			edges: Edge[];
+		}
+
+		const data: Data = {
+			nodes: nodesData,
+			edges: edgesData
+		};
+
+		console.log(JSON.stringify(data));
+	}
 </script>
 
 <svelte:head>
 	<title>Home</title>
 	<meta name="description" content="Home site" />
 </svelte:head>
+
+<Button color="alternative" on:click={handleClick}>Alternative</Button>
 
 <div style="height:100vh;">
 	<SvelteFlow {nodes} {edges} {nodeTypes} fitView attributionPosition="top-right">
